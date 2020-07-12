@@ -33,13 +33,32 @@
             border-top-right-radius: 0;
         }
     </style>
-    <form class="form-signin">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            @if($errors->count()===1)
+                {{$errors->first()}}
+            @else
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
+    @endif
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+    <form class="form-signin" action="{{route('login')}}" method="post">
+        {{csrf_field()}}
         <img class="mb-4" src="{{asset('img/bootstrap-solid.svg')}}" alt="" width="72" height="72" style="margin-left: 104px">
         <h1 class="h3 mb-3 font-weight-normal text-center">Please Sign in</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me

@@ -12,7 +12,7 @@
                     <h4 class="text-white">Contact</h4>
                     <ul class="list-unstyled">
                         <li><a href="{{route('register')}}" class="text-white">Register</a></li>
-                        <li><a href="#" class="text-white">Login</a></li>
+                        <li><a href="{{route('login')}}" class="text-white">Login</a></li>
                     </ul>
                 </div>
             </div>
