@@ -30,3 +30,10 @@ Route::get('/profile','frontend\AuthController@profile')->name('profile');
 //login route
 Route::get('/login','frontend\AuthController@login')->name('login');
 Route::post('/login','frontend\AuthController@process_login');
+
+
+//admin routes
+Route::get('/admin','backend\AdminController@dashboard')->name('admin');
+//categories route
+Route::get('/admin/categories','backend\AdminCategoriesController@index')->name('admin.categories');
+Route::get('/admin/categories/create','backend\AdminCategoriesController@create')->name('admin.categories.create');
