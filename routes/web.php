@@ -37,3 +37,7 @@ Route::get('/admin','backend\AdminController@dashboard')->name('admin');
 //categories route
 Route::get('/admin/categories','backend\AdminCategoriesController@index')->name('admin.categories');
 Route::get('/admin/categories/create','backend\AdminCategoriesController@create')->name('admin.categories.create');
+Route::post('/admin/category/create','backend\AdminCategoriesController@store')->name('admin.categories.store');
+Route::get('/admin/category/edit/{id}','backend\AdminCategoriesController@categories_edit')->name('admin.categories.edit');
+Route::post('/admin/category/update/{id}','backend\AdminCategoriesController@category_update')->name('admin.categories.update');
+Route::post('/admin/category/delete/{id}','backend\AdminCategoriesController@category_delete')->name('admin.categories.delete');

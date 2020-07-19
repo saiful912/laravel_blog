@@ -5,8 +5,8 @@
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Add Category</h1>
-
-    <form action="#" method="post" class="form form-horizontal w-75" enctype="multipart/form-data">
+@include('backend.partials._message')
+    <form action="{{route('admin.categories.store')}}" method="post" class="form form-horizontal w-75" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
             <label for="name">Name</label>
@@ -21,8 +21,9 @@
             <label for="exampleInputText">Parent Category (optional)</label>
             <select class="form-control" name="parent_id">
                 <option value="">Please select a parent category</option>
-                    <option value="mobile">mobile</option>
-
+                @foreach($main_categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
             </select>
         </div>
 
