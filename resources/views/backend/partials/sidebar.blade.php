@@ -45,8 +45,8 @@
         </a>
         <div id="Products" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">Add Products</a>
-                <a class="collapse-item" href="#">View Products</a>
+                <a class="collapse-item" href="{{route('admin.products.create')}}">Add Products</a>
+                <a class="collapse-item" href="{{route('admin.products')}}">View Products</a>
             </div>
         </div>
     </li>
