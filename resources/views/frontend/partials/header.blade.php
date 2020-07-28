@@ -3,10 +3,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">Add some information about the album below, the author, or any other
-                        background context. Make it a few sentences long so folks can pick up some informative tidbits.
-                        Then, link them off to some social networking sites or contact information.</p>
+                    <h4 class="text-white">Categories</h4>
+                    <div class="list-group">
+                        @foreach(App\Models\Category::orderBy('name','asc')->where('parent_id',Null)->get() as $parent)
+                        <div class="parent">
+                            <a href="#main-{{$parent->id}}" data-toggle="collapse">
+                                {{$parent->name}}
+                            </a>
+                        </div>
+                            <div class="collapse" id="main-{{$parent->id}}">
+                                <div class="child-rows">
+                                    @foreach(App\Models\Category::orderBy('name','asc')->where('parent_id',$parent->id)->get() as $child)
+                                    <a href="{{route('categories.show',$child->id)}}" style="color: white;margin-left: 10px;display: block">{{$child->name}}</a>
+                                        @endforeach
+                                </div>
+                            </div>
+                            @endforeach
+                    </div>
                 </div>
                 <div class="col-sm-4 offset-md-1 py-4">
                     <h4 class="text-white">Contact</h4>

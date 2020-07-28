@@ -45,7 +45,7 @@ class AdminProductsController extends Controller
             $image=$request->file('image');
             $img=time().'.'.$image->getClientOriginalExtension();
             $location=public_path('images/product/'.$img);
-            Image::make($image)->resize(300, 200)->save($location);
+            Image::make($image)->save($location);
             $product->image=$img;
         }
 
@@ -85,7 +85,7 @@ class AdminProductsController extends Controller
             $image=$request->file('image');
             $img=time().'.'.$image->getClientOriginalExtension();
             $location=public_path('images/product/'.$img);
-            Image::make($image)->resize(300, 200)->save($location);
+            Image::make($image)->save($location);
             $product->image=$img;
         }
         $product->save();

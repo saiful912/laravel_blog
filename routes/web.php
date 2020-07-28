@@ -18,9 +18,15 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
-Route::get('/','frontend\Homecontroller@home')->name('home');
+Route::get('/','frontend\HomeController@home')->name('home');
 
-Route::get('/products','frontend\Homecontroller@product')->name('products');
+Route::get('/products','frontend\HomeController@product')->name('products');
+Route::get('/products/show/{id}','frontend\HomeController@products_show')->name('products.show');
+Route::get('/categories/{id}','frontend\HomeController@category_show')->name('categories.show');
+//carts route
+Route::get('/carts','frontend\CartsController@index')->name('carts');
+Route::post('/carts/store','frontend\CartsController@store')->name('carts.store');
+
 //register route
 
 Route::get('/register','frontend\AuthController@showRegistrationFrom')->name('register');
