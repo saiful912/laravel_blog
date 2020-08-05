@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -36,5 +38,30 @@ class HomeController extends Controller
             session()->flash('errors','Sorry | There is no category Product');
             return back();
         }
+    }
+
+    public function checkout()
+    {
+        return view('frontend.checkout');
+    }
+
+    public function checkout_store(Request $request)
+    {
+        $data=$request->all();
+
+        $order=new Order();
+        $order->name=$data['name'];
+        $order->phone_number=$data['phone_number'];
+        $order->email=$data['email'];
+        $order->address=$data['email'];
+        $order->ip_address=request()->ip();
+        $order->save();
+
+        foreach (Cart::totalCarts() as $cart){
+            $cart->order_id=$order->id;
+            $cart->save();
+        }
+
+        return back()->with('success','You are order successfully create!!');
     }
 }

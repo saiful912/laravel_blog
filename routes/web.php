@@ -26,7 +26,13 @@ Route::get('/categories/{id}','frontend\HomeController@category_show')->name('ca
 //carts route
 Route::get('/carts','frontend\CartsController@index')->name('carts');
 Route::post('/carts/store','frontend\CartsController@store')->name('carts.store');
+Route::post('/carts/update/{id}','frontend\CartsController@update')->name('carts.update');
+Route::post('/carts/delete/{id}','frontend\CartsController@destroy')->name('carts.delete');
 
+
+//checkout
+Route::get('/checkout','frontend\HomeController@checkout')->name('checkouts');
+Route::post('/checkout/store','frontend\HomeController@checkout_store')->name('checkouts.store');
 //register route
 
 Route::get('/register','frontend\AuthController@showRegistrationFrom')->name('register');

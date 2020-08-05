@@ -26,6 +26,7 @@
                     <ul class="list-unstyled">
                         <li><a href="{{route('register')}}" class="text-white">Register</a></li>
                         <li><a href="{{route('login')}}" class="text-white">Login</a></li>
+                        <li><a href="{{route('carts')}}" class="text-white">Cart ( {{App\Models\Cart::totalItems()}} )</a></li>
                     </ul>
                 </div>
             </div>

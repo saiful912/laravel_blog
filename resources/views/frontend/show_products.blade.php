@@ -2,6 +2,7 @@
 @section('main')
 
     <div class="container" style="margin-top: 40px;">
+        @include('frontend.partials._message')
         <div class="row">
             <div class="col-md-4">
                 <img src="{{asset('images/product/'.$product->image)}}"  width="100%" class="img-polaroid" alt="ProductImage">
