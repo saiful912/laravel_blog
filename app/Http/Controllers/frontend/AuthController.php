@@ -58,9 +58,13 @@ class AuthController extends Controller
             'password'=>'required',
         ]);
         $user=User::where('email',$request->email)->first();
-        if(Auth::guard('web')->attempt(['email'=>$request->email,'password'=>$request->password])){
+        if(Auth::guard('web')->attempt(['email'=>$request->email,'password'=>$request->password,'status'=>1])){
+            return redirect()->route('admin');
+        }elseif(Auth::guard('web')->attempt(['email'=>$request->email,'password'=>$request->password]))
+        {
             return redirect()->route('profile');
-        }else{
+        }
+        else{
             return back()->with('message','Invalid Email or Password');
         }
     }
@@ -68,5 +72,11 @@ class AuthController extends Controller
     public function profile()
     {
         return view('frontend.user.profile');
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect(route('home'));
     }
 }

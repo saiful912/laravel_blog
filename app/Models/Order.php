@@ -8,7 +8,6 @@ class Order extends Model
 {
     public $guarded = [];
 
-
     public function carts()
     {
         return $this->hasMany(Cart::class);

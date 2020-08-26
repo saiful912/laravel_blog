@@ -61,7 +61,6 @@ class HomeController extends Controller
             $cart->order_id=$order->id;
             $cart->save();
         }
-
         return back()->with('success','You are order successfully create!!');
     }
 }

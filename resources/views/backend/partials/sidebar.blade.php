@@ -50,6 +50,11 @@
             </div>
         </div>
     </li>
-
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('admin.orders')}}" >
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Orders</span>
+        </a>
+    </li>
 </ul>
 <!-- End of Sidebar -->

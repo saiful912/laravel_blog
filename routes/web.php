@@ -42,22 +42,33 @@ Route::get('/profile','frontend\AuthController@profile')->name('profile');
 //login route
 Route::get('/login','frontend\AuthController@login')->name('login');
 Route::post('/login','frontend\AuthController@process_login');
+Route::get('/logout','frontend\AuthController@logout')->name('logout');
 
 
 //admin routes
-Route::get('/admin','backend\AdminController@dashboard')->name('admin');
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('/admin','backend\AdminController@dashboard')->name('admin');
 //categories route
-Route::get('/admin/categories','backend\AdminCategoriesController@index')->name('admin.categories');
-Route::get('/admin/categories/create','backend\AdminCategoriesController@create')->name('admin.categories.create');
-Route::post('/admin/category/create','backend\AdminCategoriesController@store')->name('admin.categories.store');
-Route::get('/admin/category/edit/{id}','backend\AdminCategoriesController@categories_edit')->name('admin.categories.edit');
-Route::post('/admin/category/update/{id}','backend\AdminCategoriesController@category_update')->name('admin.categories.update');
-Route::post('/admin/category/delete/{id}','backend\AdminCategoriesController@category_delete')->name('admin.categories.delete');
+    Route::get('/admin/categories','backend\AdminCategoriesController@index')->name('admin.categories');
+    Route::get('/admin/categories/create','backend\AdminCategoriesController@create')->name('admin.categories.create');
+    Route::post('/admin/category/create','backend\AdminCategoriesController@store')->name('admin.categories.store');
+    Route::get('/admin/category/edit/{id}','backend\AdminCategoriesController@categories_edit')->name('admin.categories.edit');
+    Route::post('/admin/category/update/{id}','backend\AdminCategoriesController@category_update')->name('admin.categories.update');
+    Route::post('/admin/category/delete/{id}','backend\AdminCategoriesController@category_delete')->name('admin.categories.delete');
 
 //products route
-Route::get('/admin/products','backend\AdminProductsController@index')->name('admin.products');
-Route::get('/admin/products/create','backend\AdminProductsController@create')->name('admin.products.create');
-Route::post('/admin/product/create','backend\AdminProductsController@store')->name('admin.products.store');
-Route::get('/admin/product/edit/{id}','backend\AdminProductsController@products_edit')->name('admin.products.edit');
-Route::post('/admin/product/update/{id}','backend\AdminProductsController@product_update')->name('admin.products.update');
-Route::post('/admin/products/delete/{id}','backend\AdminProductsController@product_delete')->name('admin.products.delete');
+    Route::get('/admin/products','backend\AdminProductsController@index')->name('admin.products');
+    Route::get('/admin/products/create','backend\AdminProductsController@create')->name('admin.products.create');
+    Route::post('/admin/product/create','backend\AdminProductsController@store')->name('admin.products.store');
+    Route::get('/admin/product/edit/{id}','backend\AdminProductsController@products_edit')->name('admin.products.edit');
+    Route::post('/admin/product/update/{id}','backend\AdminProductsController@product_update')->name('admin.products.update');
+    Route::post('/admin/products/delete/{id}','backend\AdminProductsController@product_delete')->name('admin.products.delete');
+
+//orders controller
+    Route::get('/orders','backend\AdminOrdersController@index')->name('admin.orders');
+    Route::get('/admin/orders/view/{id}','backend\AdminOrdersController@view')->name('admin.orders.view');
+    Route::post('/admin/order/completed/{id}','backend\AdminOrdersController@completed')->name('admin.order.completed');
+    Route::post('/admin/order/paid/{id}','backend\AdminOrdersController@paid')->name('admin.order.paid');
+    Route::post('/admin/delete/{id}','backend\AdminOrdersController@delete')->name('admin.order.delete');
+
+});
